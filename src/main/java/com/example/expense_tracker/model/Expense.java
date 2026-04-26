@@ -1,5 +1,5 @@
 
-package com.example.expensetracker.model;
+package com.example.expense_tracker.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;

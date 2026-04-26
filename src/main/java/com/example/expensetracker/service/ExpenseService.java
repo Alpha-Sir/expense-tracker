@@ -1,7 +1,9 @@
-package com.example.expensetracker.service;
+package com.example.expense_tracker.service;
 
-import com.example.expensetracker.model.Expense;
-import com.example.expensetracker.repository.ExpenseRepository;
+import com.example.expense_tracker.model.Expense;
+import com.example.expense_tracker.repository.ExpenseRepository;
+
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

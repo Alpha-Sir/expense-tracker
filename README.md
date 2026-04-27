@@ -88,3 +88,12 @@ src/main/resources/
 
 &#x20;└── application.properties
 
+
+## Screenshots
+
+### Home Page
+![Home](screenshots/home.png)
+
+### After Adding Expense
+![After Add](screenshots/after-add.png)
+

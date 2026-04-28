@@ -23,6 +23,7 @@ public class ExpenseController {
     public String viewHomePage(Model model) {
         model.addAttribute("expense", new Expense());
         model.addAttribute("expenses", service.getAllExpenses());
+        model.addAttribute("totalExpenses", service.getTotalExpenses());
         return "index";
     }
 

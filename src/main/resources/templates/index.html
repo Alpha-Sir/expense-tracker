@@ -13,6 +13,10 @@
         <h1>Simple Expense Tracker</h1>
         <p>Track your daily spending easily</p>
     </div>
+    <div class="summary-card">
+    <h2>Total Spending</h2>
+    <p th:text="'R ' + ${#numbers.formatDecimal(totalExpenses, 1, 2)}">R 0.00</p>
+    </div>
 
     <div class="card">
         <h2>Add New Expense</h2>

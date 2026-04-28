@@ -13,15 +13,21 @@
         <h1>Simple Expense Tracker</h1>
         <p>Track your daily spending easily</p>
     </div>
+
     <div class="summary-card">
-    <h2>Total Spending</h2>
-    <p th:text="'R ' + ${#numbers.formatDecimal(totalExpenses, 1, 2)}">R 0.00</p>
+        <h2>Total Spending</h2>
+        <p th:text="'R ' + ${#numbers.formatDecimal(totalExpenses, 1, 2)}">R 0.00</p>
     </div>
 
     <div class="card">
-        <h2>Add New Expense</h2>
+        <h2 th:text="${expense != null and expense.id != null ? 'Edit Expense' : 'Add New Expense'}">
+            Add New Expense
+        </h2>
 
         <form th:action="@{/save}" th:object="${expense}" method="post">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{date}">
+
             <div class="form-group">
                 <label>Expense Title</label>
                 <input type="text" th:field="*{title}" placeholder="Example: Lunch" required>
@@ -45,7 +51,10 @@
                 <input type="number" step="0.01" th:field="*{amount}" placeholder="Example: 50.00" required>
             </div>
 
-            <button type="submit">Save Expense</button>
+            <button type="submit"
+                    th:text="${expense != null and expense.id != null ? 'Update Expense' : 'Save Expense'}">
+                Save Expense
+            </button>
         </form>
     </div>
 
@@ -72,6 +81,7 @@
                 <td th:text="'R ' + ${expense.amount}"></td>
                 <td th:text="${expense.date}"></td>
                 <td>
+                    <a class="edit-btn" th:href="@{/edit/{id}(id=${expense.id})}">Edit</a>
                     <a class="delete-btn" th:href="@{/delete/{id}(id=${expense.id})}">Delete</a>
                 </td>
             </tr>

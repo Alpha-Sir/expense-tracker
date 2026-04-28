@@ -127,11 +127,25 @@ tbody tr:hover {
 }
 
 .summary-card h2 {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     font-size: 22px;
 }
 
 .summary-card p {
     font-size: 34px;
     font-weight: bold;
+}
+
+.edit-btn {
+    background: #f59e0b;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-right: 6px;
+}
+
+.edit-btn:hover {
+    background: #d97706;
 }

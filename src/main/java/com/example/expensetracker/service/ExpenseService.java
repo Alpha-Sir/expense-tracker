@@ -26,6 +26,10 @@ public class ExpenseService {
     public void deleteExpense(Long id) {
         repository.deleteById(id);
     }
+    
+    public Expense getExpenseById(Long id) {
+    return repository.findById(id).orElse(null);
+}
 
     public double getTotalExpenses() {
         return repository.findAll()

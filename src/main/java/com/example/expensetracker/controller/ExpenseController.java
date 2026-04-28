@@ -19,22 +19,17 @@ public class ExpenseController {
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
-
-        // 🔥 ALWAYS send expense (VERY IMPORTANT)
         model.addAttribute("expense", new Expense());
-
         model.addAttribute("expenses", service.getAllExpenses());
         model.addAttribute("totalExpenses", service.getTotalExpenses());
-
+        model.addAttribute("categoryTotals", service.getExpensesByCategory());
         return "index";
     }
 
     @GetMapping("/edit/{id}")
     public String editExpense(@PathVariable Long id, Model model) {
-
         Expense expense = service.getExpenseById(id);
 
-        // 🔥 If null, avoid crash
         if (expense == null) {
             expense = new Expense();
         }
@@ -42,13 +37,13 @@ public class ExpenseController {
         model.addAttribute("expense", expense);
         model.addAttribute("expenses", service.getAllExpenses());
         model.addAttribute("totalExpenses", service.getTotalExpenses());
+        model.addAttribute("categoryTotals", service.getExpensesByCategory());
 
         return "index";
     }
 
     @PostMapping("/save")
     public String saveExpense(@ModelAttribute("expense") Expense expense) {
-
         if (expense.getDate() == null) {
             expense.setDate(LocalDate.now());
         }

@@ -5,6 +5,7 @@
     <title>Simple Expense Tracker</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -17,6 +18,11 @@
     <div class="summary-card">
         <h2>Total Spending</h2>
         <p th:text="'R ' + ${#numbers.formatDecimal(totalExpenses, 1, 2)}">R 0.00</p>
+    </div>
+
+    <div class="card">
+        <h2>Spending by Category</h2>
+        <canvas id="categoryChart"></canvas>
     </div>
 
     <div class="card">
@@ -93,6 +99,41 @@
         </table>
     </div>
 </div>
+
+<script th:inline="javascript">
+    const categoryTotals = /*[[${categoryTotals}]]*/ {};
+
+    const labels = Object.keys(categoryTotals);
+    const values = Object.values(categoryTotals);
+
+    const ctx = document.getElementById('categoryChart');
+
+    if (ctx && labels.length > 0) {
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Amount Spent (R)',
+                    data: values
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
 
 </body>
 </html>
